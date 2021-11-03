@@ -17,9 +17,10 @@ const Servers = require('./models/server');
 const port = process.env.PORT || 3001
 
 
-app.get('/', async (req, res) => {
+app.get('/api', async (req, res) => {
     const servers_count = await Servers.findById(process.env.ID)
-    res.json({ schemaVersion: 1, logo: "Discord",style="for-the-badge", label: "", "message": `Server count: ${servers_count['server_count']}`, "color": "555" });
+    res.setHeader('Content-Type', 'application/json')
+    res.json({ schemaVersion: 1, label: "Valorina #6711", message: `Server count: ${servers_count['server_count']}`, namedLogo: "Discord", labelColor: "586AEA", style: "for-the-badge", logoColor: "white", color: "FE424F" });
 })
 
 app.listen(port, () => {
